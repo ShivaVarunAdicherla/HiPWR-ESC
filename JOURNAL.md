@@ -1,5 +1,12 @@
-= Journal-1 (Ideation and Picking Components)
-== [Lapse link for this Journal](https://lapse.hackclub.com/timelapse/lf7XQWSmRJG7)
+---
+title: "HiPWR-ESC"
+author: "Varun"
+description: "High-Power Sensorless BLDC Motor Controller"
+created_at: "2026-05-19"
+---
+
+# May 19: Journal-1 (Ideation and Picking Components)
+## [Lapse link for this Journal](https://lapse.hackclub.com/timelapse/lf7XQWSmRJG7)
 
 ---
 
@@ -16,7 +23,7 @@ decided on.
 Then I drew a basic block diagram, on which blocks will connect to which components, to plan for
 the inputs and peripherals I'm going to need in the Micro-Controller.
 
-=== Micro-Controller
+### Micro-Controller
 Based on my block diagram I needed the following:
 
 + Support for Timer which can atleast do 3 Channel PWM
@@ -42,7 +49,7 @@ So, for now I'm planning to use **STM32G431KBT6TR** since it's cheaper and still
 mostly aimed at replicating the Digital peripheral and capabilities. (Lack of PGA + CMPs) So
 they were eleminated too.
 
-=== MosFETs
+### MosFETs
 
 For find components in this section, I just filtered based on the Max Continuous Drain Current
 (Id) to a Minimum of 30A. Then I've further narrowed down the selection based on:
@@ -64,7 +71,7 @@ Landed on:
 + XR60N03 from XNRUSEMI - $0.0655
   + I picked this since It had an English Datasheet + Rds ON is too good to pass up
 
-=== Gate Drivers
+### Gate Drivers
 This is the spot/point where I wasted a lot of time. I was digging the wrong specs at one point
 T_T. Most of the datasheets being in Chinese didn't help. Anyways I was searching for the
 following spec:
@@ -85,8 +92,17 @@ I still want to search for more drivers this time rising my budget for this. I r
 being too cheap while journaling. But as a place holder U2181C for it's English datasheet, even
 though it's quite expensive to it's competition.
 
+### Image
+
+---
+
+![Component BrainStorm](img_journal/journal-1.png)
+
+---
+
 **Note:** Oh, also I'm planning on soldering all the components by myself using an Iron and Hot
 Air so, I've avoided using any QFN or it's relative packaging formats since they are really hard
 to solder.
 
+**Total time spent: 1 Hour 39 Minutes 45 Seconds**
 
