@@ -125,7 +125,7 @@ power range/limit (Which is 1W for the component I choose, and for 30A it comes 
 0.9W), which is pretty high, but the lowest I can go reasonably while considering the current
 resolution. A simple calculation using:
 
-$$ I_{min}= \frac{V_{LSB}}/{G \cdot R_{sense}} $$
+$$ I_{min}= \frac{V_{LSB}}{G \cdot R_{sense}} $$
 
 gave me a current resolution of 64.4mA (Considering my ENOB will be 10 bits, so it's looking
 good so far.)
