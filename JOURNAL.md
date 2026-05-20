@@ -109,3 +109,66 @@ to solder.
 
 **Total time spent: 1 Hour 39 Minutes 45 Seconds**
 
+# May 21: Journal-2 (Picking Components - Passives and Power)
+== [lapse link for this journal](https://lapse.hackclub.com/timelapse/4vriV8PPx9Hl)
+
+=== Current Sense Resistors
+
+For this, I need some math done. We already have ~6.5 mOhm as the Rds_on for the MOSFETs I choose.
+Technically we could use the mosFETs as the current sense elements except for the variation with
+temperature and tolerances/variance from part to part, and most importantly it's dependance on Vgs
+(Generates about 5.85W in heat assuming 30A of Id), and I didn't want to waste more power, So I
+we need the lowest resistance we can get away with.
+
+For this we really don't need to be that careful except for the fact that we lie inside the
+power range/limit (Which is 1W for the component I choose, and for 30A it comes out to be
+0.9W), which is pretty high, but the lowest I can go reasonably while considering the current
+resolution. A simple calculation using:
+
+$ I_{min}= \frac{V_{LSB}}/{G \cdot R_{sense}} $
+
+gave me a current resolution of 64.4mA (Considering my ENOB will be 10 bits, so it's looking
+good so far.)
+
+=== Switching Buck Converter IC
+
+After looking through the available options, I've decided to have a step down to 10-12V instead
+of directly to 3.3V as I was planning (I've taken this decision after seeing the lack of options
+I had available.), Instead I'll now do an LDO from the 10V I generate?
+
+No, I can't do that,since the buck converter will now approximately have to generate 6A to accommodate
+the Gate Drivers, which I don't think I'll be able to do either. So I've stepped down from my target
+of accommodating **6S** batteries and I'm now targeting **4S** batteries with a max nominal Voltage
+of **16.8V**. With this change I've decided on:
+
++ EA8252O8R
+  + Primarily because it's switching frequency is 600kHz (Which is pretty decent)
+  + Doesn't need an external diode (Further reducing my BoM items)
+  + Nice to solder SOP8 Package with all the necessary protections built-in.
+
+=== Other exploration
+
+After looking at the cart value, I was quite unsatisfied with how much I would be spending overall
+for a single ESC, and I think I might have stumbled upon something really good. Instead of upgrading
+to a Mixed Signal Micro-Controller like the **STM32G431KBT6TR**, I could add the analog capabilities
+to a normal interconnectivity based Micro-Controller, which will isolate the Digital and Analog
+Subsystems even more, with a high change of this giving me better results.
+
+The component like **INA2180** has 2 current sense Amplifier channels, and it really isn't that hard
+to make something like this on your own, and I looked at OpAmps like **NJM4580** which I think
+can take over the job of both **CMPs** and **PGAs** which I originally thought of for the analog
+stuff. Also OpAmps like the **NE5532DRG** also look really good regards to this.
+
++ One down side that I think I would be introducing would be the additional complexity that I would
+  be incurring when laying out and routing the PCB. But so far I think we can swap out the expensiver
+  controller with something more cheaper.
+
+---
+
+== Image
+
+![Image for Journal-2](img_journal/journal-2.png)
+
+---
+
+**Total time spent: 1 Hour 22 Minutes 15 Seconds**
